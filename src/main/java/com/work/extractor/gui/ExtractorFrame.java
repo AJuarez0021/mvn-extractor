@@ -20,21 +20,45 @@ import javax.swing.JToolBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
+ * The Class ExtractorFrame.
  *
  * @author ajuar
  */
 public class ExtractorFrame extends JFrame {
 
-    private final ExtractorTableModel model = new ExtractorTableModel();
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+	
+	/** The model. */
+	private final ExtractorTableModel model = new ExtractorTableModel();
+    
+    /** The status. */
     private final JLabel status = new JLabel("Listo");
+    
+    /** The input file. */
     private File inputFile;
+    
+    /** The password. */
     private String password;
+    
+    /** The current file. */
     private transient ExtractorService currentFile;
+    
+    /** The info. */
     private transient ArchiveInfo info;
+    
+    /** The extract btn. */
     private JButton extractBtn;
+    
+    /** The comment btn. */
     private JButton commentBtn;
+    
+    /** The report btn. */
     private JButton reportBtn;
     
+    /**
+     * Instantiates a new extractor frame.
+     */
     public ExtractorFrame() {
         super("Extractor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -51,6 +75,11 @@ public class ExtractorFrame extends JFrame {
         add(status, BorderLayout.SOUTH);
     }
     
+    /**
+     * Creates the tool bar.
+     *
+     * @return the j tool bar
+     */
     private JToolBar createToolBar() {
         JToolBar bar = new JToolBar();
         bar.setFloatable(false);
@@ -76,6 +105,9 @@ public class ExtractorFrame extends JFrame {
         return bar;
     }
     
+    /**
+     * Extract selected.
+     */
     private void extractSelected() {
         if (currentFile == null || info == null) {
             return;
@@ -95,6 +127,14 @@ public class ExtractorFrame extends JFrame {
         }
     }
     
+    /**
+     * Make button.
+     *
+     * @param text the text
+     * @param mnemonic the mnemonic
+     * @param al the al
+     * @return the j button
+     */
     private JButton makeButton(String text, int mnemonic, java.awt.event.ActionListener al) {
         JButton b = new JButton(text);
         if (mnemonic != 0) {
@@ -105,6 +145,9 @@ public class ExtractorFrame extends JFrame {
         return b;
     }
     
+    /**
+     * Open.
+     */
     private void open() {
         
         try {
@@ -131,6 +174,9 @@ public class ExtractorFrame extends JFrame {
         }
     }
     
+    /**
+     * Generate report.
+     */
     private void generateReport() {
         if (currentFile == null || info == null) {
             return;
@@ -146,6 +192,9 @@ public class ExtractorFrame extends JFrame {
         
     }
     
+    /**
+     * Show comment.
+     */
     private void showComment() {
         if (currentFile == null || info == null) {
             return;
@@ -155,6 +204,9 @@ public class ExtractorFrame extends JFrame {
         commentDialog.setVisible(true);
     }
     
+    /**
+     * About.
+     */
     private void about() {
         AboutDialog aboutDialog = new AboutDialog(this);
         aboutDialog.setVisible(true);

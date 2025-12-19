@@ -11,11 +11,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
+ * The Class ReportService.
  *
  * @author ajuar
  */
 public class ReportService {
 
+    /**
+     * Generate report.
+     *
+     * @param outputFile the output file
+     * @param model the model
+     */
     public void generateReport(File outputFile, ExtractorTableModel model) {
         Path out = outputFile.toPath();
         try (BufferedWriter w = Files.newBufferedWriter(out)) {

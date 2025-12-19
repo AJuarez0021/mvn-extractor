@@ -4,12 +4,19 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.work.extractor.gui.ExtractorFrame;
 import javax.swing.SwingUtilities;
 
+
 /**
+ * The Class Main.
  *
  * @author ajuar
  */
 public class Main {
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         FlatMacDarkLaf.setup();
         SwingUtilities.invokeLater(() -> new ExtractorFrame().setVisible(true));

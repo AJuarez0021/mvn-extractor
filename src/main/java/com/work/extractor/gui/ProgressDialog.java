@@ -13,19 +13,35 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 /**
+ * The Class ProgressDialog.
  *
  * @author ajuar
  */
 public class ProgressDialog extends JDialog {
 
-    private JProgressBar progressBar;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+	
+	/** The progress bar. */
+	private JProgressBar progressBar;
+    
+    /** The lbl mensaje. */
     private JLabel lblMensaje;
 
+    /**
+     * Instantiates a new progress dialog.
+     *
+     * @param parent the parent
+     * @param title the title
+     */
     public ProgressDialog(JFrame parent, String title) {
         super(parent, title, true);
         initComponents();
     }
 
+    /**
+     * Inits the components.
+     */
     private void initComponents() {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setSize(400, 150);
@@ -51,14 +67,29 @@ public class ProgressDialog extends JDialog {
         add(panelCentral, BorderLayout.CENTER);
     }
 
+    /**
+     * Sets the progress.
+     *
+     * @param valor the new progress
+     */
     public void setProgress(int valor) {
         progressBar.setValue(valor);
     }
 
+    /**
+     * Sets the mensaje.
+     *
+     * @param mensaje the new mensaje
+     */
     public void setMensaje(String mensaje) {
         lblMensaje.setText(mensaje);
     }
 
+    /**
+     * Sets the indeterminate.
+     *
+     * @param indeterminate the new indeterminate
+     */
     public void setIndeterminate(boolean indeterminate) {
         progressBar.setIndeterminate(indeterminate);
     }

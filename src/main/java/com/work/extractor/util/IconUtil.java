@@ -7,19 +7,27 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
+ * The Class IconUtil.
  *
  * @author ajuar
  */
 public final class IconUtil {
+    
+    /** The Constant log. */
     private static final Logger log
             = Logger.getLogger(IconUtil.class.getName());
     
+    /**
+     * Instantiates a new icon util.
+     */
     private IconUtil() {
         
     }
+    
     /**
-     * Carga un icono desde el classpath (carpeta resources)
-     * @param path Ruta relativa desde resources, ejemplo: "/icons/save.png"
+     * Carga un icono desde el classpath (carpeta resources).
+     *
+     * @param path Ruta relativa desde resources
      * @return ImageIcon o null si no se encuentra
      */
     public static ImageIcon loadIcon(String path) {
@@ -38,7 +46,8 @@ public final class IconUtil {
     }
     
     /**
-     * Carga un icono y lo redimensiona
+     * Carga un icono y lo redimensiona.
+     *
      * @param path Ruta del icono
      * @param width Ancho deseado
      * @param height Alto deseado
@@ -53,7 +62,8 @@ public final class IconUtil {
     }
     
     /**
-     * Redimensiona un ImageIcon
+     * Redimensiona un ImageIcon.
+     *
      * @param icon The icon
      * @param width The width
      * @param height The height

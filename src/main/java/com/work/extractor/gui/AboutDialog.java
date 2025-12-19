@@ -31,23 +31,45 @@ import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 /**
+ * The Class AboutDialog.
  *
  * @author ajuar
  */
 public class AboutDialog extends JDialog {
 
+    private static final long serialVersionUID = 1L;
+
+	/** The Constant APP_NAME. */
     private static final String APP_NAME = "Free Extractor";
+    
+    /** The Constant VERSION. */
     private static final String VERSION = "1.0.0";
+    
+    /** The Constant AUTHOR. */
     private static final String AUTHOR = "A. Juarez";
+    
+    /** The Constant WEBSITE. */
     private static final String WEBSITE = "https://github.com/AJuarez0021";
+    
+    /** The Constant COPYRIGHT. */
     private static final String COPYRIGHT = "© %d Todos los derechos reservados";
+    
+    /** The Constant FONT_NAME. */
     private static final String FONT_NAME = "Arial";
 
+    /**
+     * Instantiates a new about dialog.
+     *
+     * @param parent the parent
+     */
     public AboutDialog(Frame parent) {
         super(parent, "Acerca de", true);
         initComponents();
     }
 
+    /**
+     * Inits the components.
+     */
     private void initComponents() {
         setLayout(new BorderLayout(10, 10));
         setResizable(false);
@@ -127,9 +149,11 @@ public class AboutDialog extends JDialog {
     }
 
     /**
-     * Crea un JLabel con hipervínculo funcional
+     * Crea un JLabel con hipervínculo funcional.
+     *
      * @param text The text
      * @param url The url
+     * @return the j label
      */
     private JLabel createHyperlinkLabel(String text, String url) {
         JLabel label = new JLabel("<html><u>" + text + "</u></html>");
@@ -158,7 +182,9 @@ public class AboutDialog extends JDialog {
     }
 
     /**
-     * Abre una URL en el navegador predeterminado
+     * Abre una URL en el navegador predeterminado.
+     *
+     * @param url the url
      */
     private void openWebpage(String url) {
         try {
@@ -178,7 +204,9 @@ public class AboutDialog extends JDialog {
     }
 
     /**
-     * Muestra la URL en un diálogo si no se puede abrir automáticamente
+     * Muestra la URL en un diálogo si no se puede abrir automáticamente.
+     *
+     * @param url the url
      */
     private void showUrlManually(String url) {
 
@@ -187,7 +215,9 @@ public class AboutDialog extends JDialog {
 
     /**
      * Crea un icono para la aplicación Puedes reemplazar esto con tu propio
-     * icono
+     * icono.
+     *
+     * @return the image icon
      */
     private ImageIcon createAppIcon() {
 

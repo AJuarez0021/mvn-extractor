@@ -12,19 +12,36 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 /**
+ * The Class PasswordDialog.
  *
  * @author ajuar
  */
 public class PasswordDialog extends JDialog {
 
-    private JPasswordField passwordField;
+   
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
+	/** The password field. */
+	private JPasswordField passwordField;
+    
+    /** The aceptado. */
     private boolean aceptado = false;
 
+    /**
+     * Instantiates a new password dialog.
+     *
+     * @param parent the parent
+     * @param titulo the titulo
+     */
     public PasswordDialog(JFrame parent, String titulo) {
         super(parent, titulo, true);
         initComponents();
     }
 
+    /**
+     * Inits the components.
+     */
     private void initComponents() {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(350, 150);
@@ -75,6 +92,11 @@ public class PasswordDialog extends JDialog {
         });
     }
 
+    /**
+     * Gets the password.
+     *
+     * @return the password
+     */
     public String getPassword() {
         if (aceptado) {
             return new String(passwordField.getPassword());
@@ -82,6 +104,11 @@ public class PasswordDialog extends JDialog {
         return null;
     }
 
+    /**
+     * Checks if is aceptado.
+     *
+     * @return true, if is aceptado
+     */
     public boolean isAceptado() {
         return aceptado;
     }

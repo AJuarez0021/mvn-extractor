@@ -28,18 +28,35 @@ import net.sf.sevenzipjbinding.simple.ISimpleInArchive;
 import net.sf.sevenzipjbinding.simple.ISimpleInArchiveItem;
 
 /**
+ * The Class ExtractorService.
  *
  * @author ajuar
  */
 public class ExtractorService {
 
+    /** The Constant log. */
     private static final Logger log
             = Logger.getLogger(ExtractorService.class.getName());
 
+    /**
+     * Read entries.
+     *
+     * @param inputFile the input file
+     * @return the archive info
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public ArchiveInfo readEntries(File inputFile) throws IOException {
         return readEntries(inputFile, null);
     }
 
+    /**
+     * Read entries.
+     *
+     * @param inputFile the input file
+     * @param password the password
+     * @return the archive info
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public ArchiveInfo readEntries(File inputFile, String password) throws IOException {
 
         ArchiveInfo entry = new ArchiveInfo();
@@ -89,6 +106,12 @@ public class ExtractorService {
         return entry;
     }
 
+    /**
+     * Requires password.
+     *
+     * @param inputFile the input file
+     * @return true, if successful
+     */
     public boolean requiresPassword(File inputFile) {
 
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(inputFile, "r"); IInArchive inArchive = SevenZip.openInArchive(null, new RandomAccessFileInStream(randomAccessFile))) {
@@ -107,11 +130,28 @@ public class ExtractorService {
         }
     }
 
+    /**
+     * Extract archive.
+     *
+     * @param inputFile the input file
+     * @param outputFile the output file
+     * @param progressBar the progress bar
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public void extractArchive(File inputFile, File outputFile, ProgressDialog progressBar)
             throws IOException {
         extractArchive(inputFile, outputFile, null, progressBar);
     }
 
+    /**
+     * Extract archive.
+     *
+     * @param inputFile the input file
+     * @param outputFile the output file
+     * @param password the password
+     * @param progressBar the progress bar
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public void extractArchive(File inputFile, File outputFile, String password, ProgressDialog progressBar)
             throws IOException {
 
@@ -178,11 +218,12 @@ public class ExtractorService {
     }
 
     /**
-     * Extrae un elemento individual del archivo
+     * Extrae un elemento individual del archivo.
      *
      * @param item The item
      * @param baseDirectory The directory
      * @param password The password
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     private void extractItem(ISimpleInArchiveItem item, Path baseDirectory, String password)
             throws IOException {
