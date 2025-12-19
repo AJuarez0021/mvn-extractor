@@ -43,7 +43,7 @@ public class CommentDialog extends JDialog {
      * @param comment the comment
      */
     public CommentDialog(JFrame parent, String fileName, String comment) {
-        super(parent, "Archive Comment", true);
+        super(parent, "Comment", true);
         initComponents(parent, fileName, comment);
     }
 

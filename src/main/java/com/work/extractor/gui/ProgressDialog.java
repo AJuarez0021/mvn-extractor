@@ -54,7 +54,7 @@ public class ProgressDialog extends JDialog {
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
         panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        lblMessage = new JLabel("Procesando...");
+        lblMessage = new JLabel("Processing...");
         lblMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         progressBar = new JProgressBar(0, 100);

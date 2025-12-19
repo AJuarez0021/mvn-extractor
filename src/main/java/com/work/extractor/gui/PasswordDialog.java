@@ -54,7 +54,7 @@ public class PasswordDialog extends JDialog {
         JPanel panelCentral = new JPanel(new GridLayout(2, 1, 5, 5));
         panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
 
-        JLabel lblMensaje = new JLabel("Ingrese la contraseña:");
+        JLabel lblMensaje = new JLabel("Enter the password:");
         passwordField = new JPasswordField(20);
 
         panelCentral.add(lblMensaje);
@@ -62,8 +62,8 @@ public class PasswordDialog extends JDialog {
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton btnAceptar = new JButton("Aceptar");
-        JButton btnCancelar = new JButton("Cancelar");
+        JButton btnAceptar = new JButton("Accept");
+        JButton btnCancelar = new JButton("Cancel");
 
         btnAceptar.addActionListener(e -> {
             accepted = true;
