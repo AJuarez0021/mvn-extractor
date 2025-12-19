@@ -27,7 +27,7 @@ public class PasswordDialog extends JDialog {
 	/** The password field. */
 	private JPasswordField passwordField;
     
-    /** The aceptado. */
+    /** The accepted. */
     private boolean accepted = false;
 
     /**
@@ -42,7 +42,7 @@ public class PasswordDialog extends JDialog {
     }
 
     /**
-     * Inits the components.
+     * initialize the components.
      */
     private void initComponents() {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -100,7 +100,7 @@ public class PasswordDialog extends JDialog {
      * @return the password
      */
     public String getPassword() {
-        if (accepted) {
+        if (isAccepted()) {
             return new String(passwordField.getPassword());
         }
         return null;
