@@ -34,10 +34,10 @@ public class PasswordDialog extends JDialog {
      * Instantiates a new password dialog.
      *
      * @param parent the parent
-     * @param titulo the titulo
+     * @param title the titulo
      */
-    public PasswordDialog(JFrame parent, String titulo) {
-        super(parent, titulo, true);
+    public PasswordDialog(JFrame parent, String title) {
+        super(parent, title, true);
         initComponents();
     }
 
@@ -46,31 +46,31 @@ public class PasswordDialog extends JDialog {
      */
     private void initComponents() {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(350, 150);
+        setSize(350, 170);
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout(10, 10));
         setResizable(false);
 
-        JPanel panelCentral = new JPanel(new GridLayout(2, 1, 5, 5));
-        panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+        JPanel centralPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+        centralPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
 
-        JLabel lblMensaje = new JLabel("Enter the password:");
+        JLabel lblMessage = new JLabel("Enter the password:");
         passwordField = new JPasswordField(20);
 
-        panelCentral.add(lblMensaje);
-        panelCentral.add(passwordField);
+        centralPanel.add(lblMessage);
+        centralPanel.add(passwordField);
 
-        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton btnAceptar = new JButton("Accept");
-        JButton btnCancelar = new JButton("Cancel");
+        JButton btnAccept = new JButton("Accept");
+        JButton btnCancel = new JButton("Cancel");
 
-        btnAceptar.addActionListener(e -> {
+        btnAccept.addActionListener(e -> {
             accepted = true;
             dispose();
         });
 
-        btnCancelar.addActionListener(e -> {
+        btnCancel.addActionListener(e -> {
             accepted = false;
             dispose();
         });
@@ -80,11 +80,11 @@ public class PasswordDialog extends JDialog {
             dispose();
         });
 
-        panelBotones.add(btnAceptar);
-        panelBotones.add(btnCancelar);
+        buttonsPanel.add(btnAccept);
+        buttonsPanel.add(btnCancel);
 
-        add(panelCentral, BorderLayout.CENTER);
-        add(panelBotones, BorderLayout.SOUTH);
+        add(centralPanel, BorderLayout.CENTER);
+        add(buttonsPanel, BorderLayout.SOUTH);
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
