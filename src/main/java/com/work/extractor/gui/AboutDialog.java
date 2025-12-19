@@ -16,6 +16,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.Serial;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.Box;
@@ -37,6 +38,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class AboutDialog extends JDialog {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
 	/** The Constant APP_NAME. */
@@ -52,7 +54,7 @@ public class AboutDialog extends JDialog {
     private static final String WEBSITE = "https://github.com/AJuarez0021";
     
     /** The Constant COPYRIGHT. */
-    private static final String COPYRIGHT = "© %d Todos los derechos reservados";
+    private static final String COPYRIGHT = "© %d All rights reserved";
     
     /** The Constant FONT_NAME. */
     private static final String FONT_NAME = "Arial";
@@ -63,7 +65,7 @@ public class AboutDialog extends JDialog {
      * @param parent the parent
      */
     public AboutDialog(Frame parent) {
-        super(parent, "Acerca de", true);
+        super(parent, "About", true);
         initComponents();
     }
 
@@ -90,7 +92,7 @@ public class AboutDialog extends JDialog {
         mainPanel.add(appNameLabel);
         mainPanel.add(Box.createVerticalStrut(5));
 
-        JLabel versionLabel = new JLabel("Versión " + VERSION);
+        JLabel versionLabel = new JLabel("Version " + VERSION);
         versionLabel.setFont(new Font(FONT_NAME, Font.PLAIN, 14));
         versionLabel.setForeground(Color.GRAY);
         versionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -102,7 +104,7 @@ public class AboutDialog extends JDialog {
         mainPanel.add(separator1);
         mainPanel.add(Box.createVerticalStrut(15));
 
-        JLabel authorLabel = new JLabel("Desarrollado por: " + AUTHOR);
+        JLabel authorLabel = new JLabel("Developed by: " + AUTHOR);
         authorLabel.setFont(new Font(FONT_NAME, Font.PLAIN, 13));
         authorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(authorLabel);
@@ -129,7 +131,7 @@ public class AboutDialog extends JDialog {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBorder(new EmptyBorder(0, 0, 10, 0));
 
-        JButton closeButton = new JButton("Cerrar");
+        JButton closeButton = new JButton("Close");
         closeButton.setPreferredSize(new Dimension(100, 30));
         closeButton.addActionListener(e -> dispose());
         buttonPanel.add(closeButton);
@@ -199,7 +201,7 @@ public class AboutDialog extends JDialog {
                 showUrlManually(url);
             }
         } catch (IOException | URISyntaxException e) {
-            MessageUtil.showError("No se pudo abrir el navegador.\nVisite: " + url, "Error");
+            MessageUtil.showError("The browser could not be opened.\nVisit: " + url, "Error");
         }
     }
 
@@ -210,7 +212,7 @@ public class AboutDialog extends JDialog {
      */
     private void showUrlManually(String url) {
 
-        MessageUtil.showInfo("Por favor, visite:\n" + url, "Sitio Web");
+        MessageUtil.showInfo("Please visit:\n" + url, "Website");
     }
 
     /**

@@ -26,19 +26,18 @@ public class ReportService {
     public void generateReport(File outputFile, ExtractorTableModel model) {
         Path out = outputFile.toPath();
         try (BufferedWriter w = Files.newBufferedWriter(out)) {
-            w.write(String.format("Informe de %s (%d entradas)%n%n", outputFile.getName(), model.getRowCount()));
+            w.write(String.format("Report %s (%d entries)%n%n", outputFile.getName(), model.getRowCount()));
             for (int i = 0; i < model.getRowCount(); i++) {
-                ArchiveEntry e = model.getEntry(i);
+                ArchiveEntry entry = model.getEntry(i);
                 w.write(String.format("%-60s %10s %10s %s%n",
-                        e.getName(),
-                        StringUtil.toFormat(e.getSize()),
-                        StringUtil.toFormat(e.getCompressedSize()),
-                        e.isDirectory() ? "DIR" : ""));
+                        entry.getName(),
+                        StringUtil.toFormat(entry.getSize()),
+                        StringUtil.toFormat(entry.getCompressedSize()),
+                        entry.isDirectory() ? "DIR" : ""));
             }
-
-            MessageUtil.showInfo("Informe generado: " + out, "Informe");
+            MessageUtil.showInfo("Report generated: " + out, "Report");
         } catch (IOException ex) {
-            MessageUtil.showError("No se pudo generar informe", ex);
+            MessageUtil.showError("Report could not be generated", ex);
         }
     }
 }

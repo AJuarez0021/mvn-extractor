@@ -3,6 +3,8 @@ package com.work.extractor.gui;
 import com.work.extractor.dto.ArchiveEntry;
 import com.work.extractor.util.DateUtil;
 import com.work.extractor.util.StringUtil;
+
+import java.io.Serial;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -16,10 +18,11 @@ import javax.swing.table.AbstractTableModel;
 public class ExtractorTableModel extends AbstractTableModel {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	/** The cols. */
-    private final String[] cols = {"Nombre", "Tamaño", "Comprimido", "Tipo", "Modificado", "CRC"};
+    private final String[] cols = {"Name", "Size", "Compressed", "Type", "Modified", "Crc"};
     
     /** The entries. */
     private transient List<ArchiveEntry> entries = List.of();
@@ -95,7 +98,7 @@ public class ExtractorTableModel extends AbstractTableModel {
             case 2 ->
                 StringUtil.toFormat(e.getCompressedSize());
             case 3 ->
-                e.isDirectory() ? "Directorio" : "Archivo";
+                e.isDirectory() ? "Directory" : "File";
             case 4 ->
                 DateUtil.format(e.getTime());
             case 5 ->

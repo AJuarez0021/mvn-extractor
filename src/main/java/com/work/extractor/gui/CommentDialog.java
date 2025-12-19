@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
+import java.io.Serial;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 public class CommentDialog extends JDialog {
 
     /** The Constant serialVersionUID. */
+    @Serial
     private static final long serialVersionUID = 1L;
 	
 	/** The comment text area. */
@@ -41,7 +43,7 @@ public class CommentDialog extends JDialog {
      * @param comment the comment
      */
     public CommentDialog(JFrame parent, String fileName, String comment) {
-        super(parent, "Comentario del Archivo", true);
+        super(parent, "Archive Comment", true);
         initComponents(parent, fileName, comment);
     }
 
@@ -59,7 +61,7 @@ public class CommentDialog extends JDialog {
         JPanel topPanel = new JPanel(new BorderLayout(5, 5));
         topPanel.setBorder(new EmptyBorder(10, 10, 5, 10));
         
-        JLabel titleLabel = new JLabel("Archivo: " + fileName);
+        JLabel titleLabel = new JLabel("File: " + fileName);
         titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD, 14f));
         topPanel.add(titleLabel, BorderLayout.NORTH);
         add(topPanel, BorderLayout.NORTH);
@@ -68,7 +70,7 @@ public class CommentDialog extends JDialog {
         centerPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
         
         commentTextArea = new JTextArea();
-        commentTextArea.setText(StringUtil.hasText(comment) ? comment : "(Sin comentario)");
+        commentTextArea.setText(StringUtil.hasText(comment) ? comment : "(No comment)");
         commentTextArea.setEditable(false);
         commentTextArea.setLineWrap(true);
         commentTextArea.setWrapStyleWord(true);
@@ -84,13 +86,13 @@ public class CommentDialog extends JDialog {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
         bottomPanel.setBorder(new EmptyBorder(5, 10, 10, 10));
         
-        JButton copyButton = new JButton("Copiar");
+        JButton copyButton = new JButton("Copy");
         copyButton.setMnemonic(KeyEvent.VK_C);
         copyButton.addActionListener(e -> copyToClipboard());
         copyButton.setEnabled(comment != null && !comment.trim().isEmpty());
         bottomPanel.add(copyButton);
         
-        JButton  closeButton = new JButton("Cerrar");
+        JButton  closeButton = new JButton("Close");
         closeButton.setMnemonic(KeyEvent.VK_ENTER);
         closeButton.addActionListener(e -> dispose());
         bottomPanel.add(closeButton);
@@ -117,6 +119,6 @@ public class CommentDialog extends JDialog {
         commentTextArea.selectAll();
         commentTextArea.copy();
         commentTextArea.setCaretPosition(0);
-        MessageUtil.showInfo("Comentario copiado al portapapeles", "Copiado");
+        MessageUtil.showInfo("Comment copied to clipboard", "Copied");
     }
 }

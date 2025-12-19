@@ -1,11 +1,14 @@
 package com.work.extractor.exception;
 
+import java.io.Serial;
+
 /**
  * The Class ExtractorException.
  */
 public class ExtractorException extends RuntimeException {
 
     /** The Constant serialVersionUID. */
+    @Serial
     private static final long serialVersionUID = -2614749875840355488L;
 
 	/**

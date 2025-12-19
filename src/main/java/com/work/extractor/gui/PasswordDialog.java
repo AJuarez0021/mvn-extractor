@@ -3,6 +3,7 @@ package com.work.extractor.gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.Serial;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,13 +21,14 @@ public class PasswordDialog extends JDialog {
 
    
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	/** The password field. */
 	private JPasswordField passwordField;
     
     /** The aceptado. */
-    private boolean aceptado = false;
+    private boolean accepted = false;
 
     /**
      * Instantiates a new password dialog.
@@ -64,17 +66,17 @@ public class PasswordDialog extends JDialog {
         JButton btnCancelar = new JButton("Cancelar");
 
         btnAceptar.addActionListener(e -> {
-            aceptado = true;
+            accepted = true;
             dispose();
         });
 
         btnCancelar.addActionListener(e -> {
-            aceptado = false;
+            accepted = false;
             dispose();
         });
 
         passwordField.addActionListener(e -> {
-            aceptado = true;
+            accepted = true;
             dispose();
         });
 
@@ -98,7 +100,7 @@ public class PasswordDialog extends JDialog {
      * @return the password
      */
     public String getPassword() {
-        if (aceptado) {
+        if (accepted) {
             return new String(passwordField.getPassword());
         }
         return null;
@@ -109,7 +111,7 @@ public class PasswordDialog extends JDialog {
      *
      * @return true, if is aceptado
      */
-    public boolean isAceptado() {
-        return aceptado;
+    public boolean isAccepted() {
+        return accepted;
     }
 }

@@ -36,11 +36,11 @@ public final class IconUtil {
             if (iconURL != null) {
                 return new ImageIcon(iconURL);
             } else {
-                log.log(Level.WARNING, "No se encontró el icono: {0}", path);
+                log.log(Level.WARNING, "The icon was not found: {0}", path);
                 return null;
             }
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error al cargar icono {0}: ", e.getMessage());
+            log.log(Level.SEVERE, "Error loading icon {0}: ", e.getMessage());
             return null;
         }
     }

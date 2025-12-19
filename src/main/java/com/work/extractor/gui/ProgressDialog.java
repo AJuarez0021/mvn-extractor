@@ -3,6 +3,7 @@ package com.work.extractor.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.io.Serial;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,13 +21,14 @@ import javax.swing.JProgressBar;
 public class ProgressDialog extends JDialog {
 
     /** The Constant serialVersionUID. */
+    @Serial
     private static final long serialVersionUID = 1L;
 	
 	/** The progress bar. */
 	private JProgressBar progressBar;
     
     /** The lbl mensaje. */
-    private JLabel lblMensaje;
+    private JLabel lblMessage;
 
     /**
      * Instantiates a new progress dialog.
@@ -52,15 +54,15 @@ public class ProgressDialog extends JDialog {
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
         panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        lblMensaje = new JLabel("Procesando...");
-        lblMensaje.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblMessage = new JLabel("Procesando...");
+        lblMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setPreferredSize(new Dimension(350, 25));
 
-        panelCentral.add(lblMensaje);
+        panelCentral.add(lblMessage);
         panelCentral.add(Box.createVerticalStrut(15));
         panelCentral.add(progressBar);
 
@@ -79,10 +81,10 @@ public class ProgressDialog extends JDialog {
     /**
      * Sets the mensaje.
      *
-     * @param mensaje the new mensaje
+     * @param message the new mensaje
      */
-    public void setMensaje(String mensaje) {
-        lblMensaje.setText(mensaje);
+    public void setMessage(String message) {
+        lblMessage.setText(message);
     }
 
     /**

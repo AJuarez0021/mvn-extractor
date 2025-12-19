@@ -190,7 +190,7 @@ public class ExtractorService {
                     }
                     success = true;
                 } catch (Exception ex) {
-                    MessageUtil.showError("Error al descomprimir", ex);
+                    MessageUtil.showError("Error decompressing", ex);
                     success = false;
                 }
                 return null;
@@ -200,7 +200,7 @@ public class ExtractorService {
             protected void process(List<Object[]> chunks) {
                 Object[] data = chunks.getLast();
                 progressBar.setProgress((int) data[0]);
-                progressBar.setMensaje("Procesando: " + data[1] + "%");
+                progressBar.setMessage("Processing: " + data[1] + "%");
             }
 
             @Override
@@ -229,26 +229,26 @@ public class ExtractorService {
             throws IOException {
 
         String relativePath = item.getPath();
-        Path archivoDestino = baseDirectory.resolve(relativePath);
+        Path outputPath = baseDirectory.resolve(relativePath);
 
-        Files.createDirectories(archivoDestino.getParent());
+        Files.createDirectories(outputPath.getParent());
 
         ExtractOperationResult result;
         if (StringUtil.hasText(password)) {
             result = item.extractSlow(data -> {
-                try (FileOutputStream fos = new FileOutputStream(archivoDestino.toFile())) {
+                try (FileOutputStream fos = new FileOutputStream(outputPath.toFile())) {
                     fos.write(data);
                 } catch (IOException e) {
-                    throw new ExtractorException("Error writing file: " + archivoDestino, e);
+                    throw new ExtractorException("Error writing file: " + outputPath, e);
                 }
                 return data.length;
             }, password);
         } else {
             result = item.extractSlow(data -> {
-                try (FileOutputStream fos = new FileOutputStream(archivoDestino.toFile())) {
+                try (FileOutputStream fos = new FileOutputStream(outputPath.toFile())) {
                     fos.write(data);
                 } catch (IOException e) {
-                    throw new ExtractorException("Error writing file: " + archivoDestino, e);
+                    throw new ExtractorException("Error writing file: " + outputPath, e);
                 }
                 return data.length;
             });

@@ -9,6 +9,7 @@ import com.work.extractor.util.StringUtil;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serial;
 import java.util.stream.Stream;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -27,13 +28,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ExtractorFrame extends JFrame {
 
     /** The Constant serialVersionUID. */
+    @Serial
     private static final long serialVersionUID = 1L;
 	
 	/** The model. */
 	private final ExtractorTableModel model = new ExtractorTableModel();
     
     /** The status. */
-    private final JLabel status = new JLabel("Listo");
+    private final JLabel status = new JLabel("Ready");
     
     /** The input file. */
     private File inputFile;
@@ -60,7 +62,7 @@ public class ExtractorFrame extends JFrame {
      * Instantiates a new extractor frame.
      */
     public ExtractorFrame() {
-        super("Extractor");
+        super("Free Extractor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(900, 600);
@@ -84,11 +86,11 @@ public class ExtractorFrame extends JFrame {
         JToolBar bar = new JToolBar();
         bar.setFloatable(false);
         
-        extractBtn = makeButton("Extraer en", 'E', e -> extractSelected());
-        commentBtn = makeButton("Ver comentario", 'C', e -> showComment());
-        reportBtn = makeButton("Generar informe", 'I', e -> generateReport());
-        JButton openBtn = makeButton("Abrir", 'O', e -> open());
-        JButton aboutBtn = makeButton("Acerca de", 0, e -> about());
+        extractBtn = makeButton("Extract in", 'E', e -> extractSelected());
+        commentBtn = makeButton("See comment", 'C', e -> showComment());
+        reportBtn = makeButton("Generate report", 'I', e -> generateReport());
+        JButton openBtn = makeButton("Open", 'O', e -> open());
+        JButton aboutBtn = makeButton("About", 'A', e -> about());
         openBtn.setIcon(IconUtil.loadIcon("/icons/open.png", 32, 32));
         extractBtn.setIcon(IconUtil.loadIcon("/icons/extract.png", 32, 32));
         reportBtn.setIcon(IconUtil.loadIcon("/icons/report.png", 32, 32));
@@ -120,10 +122,10 @@ public class ExtractorFrame extends JFrame {
         }
         
         try {
-            ProgressDialog progressBar = new ProgressDialog(this, "Progreso");
+            ProgressDialog progressBar = new ProgressDialog(this, "Progress");
             currentFile.extractArchive(inputFile, fc.getSelectedFile(), password, progressBar);
         } catch (IOException ex) {
-            MessageUtil.showError("Error al extraer archivo: " + info.getFileName(), ex);
+            MessageUtil.showError("Error extracting file: " + info.getFileName(), ex);
         }
     }
     
@@ -152,7 +154,7 @@ public class ExtractorFrame extends JFrame {
         
         try {
             JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(new FileNameExtensionFilter("Archivos (ZIP, RAR, 7Z, TAR)", "zip", "rar", "7z", "tar", "gz", "bz2"));
+            fc.setFileFilter(new FileNameExtensionFilter("Files (ZIP, RAR, 7Z, TAR)", "zip", "rar", "7z", "tar", "gz", "bz2"));
             if (fc.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
@@ -160,17 +162,17 @@ public class ExtractorFrame extends JFrame {
             currentFile = new ExtractorService();
             password = null;
             if (currentFile.requiresPassword(inputFile)) {
-                PasswordDialog dialog = new PasswordDialog(this, "Password requerido");
+                PasswordDialog dialog = new PasswordDialog(this, "Password required");
                 dialog.setVisible(true);
                 password = dialog.getPassword();
             }
             info = currentFile.readEntries(inputFile, password);
             model.setEntries(info.getEntries());
-            setTitle("Extractor - " + info.getFileName());
+            setTitle("Free Extractor - " + info.getFileName());
             status.setText(" " + info.getPath());
             Stream.of(extractBtn, commentBtn, reportBtn).forEach(b -> b.setEnabled(true));
         } catch (Exception ex) {
-            MessageUtil.showError("No se pudo abrir el archivo", ex);
+            MessageUtil.showError("The file could not be opened", ex);
         }
     }
     
@@ -182,7 +184,7 @@ public class ExtractorFrame extends JFrame {
             return;
         }
         JFileChooser fc = new JFileChooser();
-        fc.setSelectedFile(new File("informe_" + StringUtil.getName(info.getFileName()) + ".txt"));
+        fc.setSelectedFile(new File("report_" + StringUtil.getName(info.getFileName()) + ".txt"));
         if (fc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
             return;
         }
