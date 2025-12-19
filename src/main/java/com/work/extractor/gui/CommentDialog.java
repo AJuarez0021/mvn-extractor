@@ -48,7 +48,7 @@ public class CommentDialog extends JDialog {
     }
 
     /**
-     * Inits the components.
+     * Initialize the components.
      *
      * @param parent the parent
      * @param fileName the file name
@@ -89,7 +89,7 @@ public class CommentDialog extends JDialog {
         JButton copyButton = new JButton("Copy");
         copyButton.setMnemonic(KeyEvent.VK_C);
         copyButton.addActionListener(e -> copyToClipboard());
-        copyButton.setEnabled(comment != null && !comment.trim().isEmpty());
+        copyButton.setEnabled(StringUtil.hasText(comment));
         bottomPanel.add(copyButton);
         
         JButton  closeButton = new JButton("Close");

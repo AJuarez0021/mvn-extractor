@@ -1,6 +1,7 @@
 package com.work.extractor.gui;
 
 import com.work.extractor.util.DateUtil;
+import com.work.extractor.util.IconUtil;
 import com.work.extractor.util.MessageUtil;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -70,7 +71,7 @@ public class AboutDialog extends JDialog {
     }
 
     /**
-     * Inits the components.
+     * Initialize the components.
      */
     private void initComponents() {
         setLayout(new BorderLayout(10, 10));
@@ -81,7 +82,7 @@ public class AboutDialog extends JDialog {
         mainPanel.setBorder(new EmptyBorder(20, 30, 20, 30));
 
         JLabel iconLabel = new JLabel();
-        iconLabel.setIcon(createAppIcon());
+        iconLabel.setIcon(IconUtil.loadIcon("/icons/main.png", 64, 64));
         iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(iconLabel);
         mainPanel.add(Box.createVerticalStrut(15));
@@ -221,7 +222,7 @@ public class AboutDialog extends JDialog {
      *
      * @return the image icon
      */
-    private ImageIcon createAppIcon() {
+    public ImageIcon createAppIcon() {
 
         int size = 64;
         java.awt.image.BufferedImage image = new java.awt.image.BufferedImage(

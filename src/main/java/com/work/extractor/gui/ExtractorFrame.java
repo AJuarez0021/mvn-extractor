@@ -11,13 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serial;
 import java.util.stream.Stream;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JToolBar;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -67,8 +61,10 @@ public class ExtractorFrame extends JFrame {
         setLayout(new BorderLayout());
         setSize(900, 600);
         setLocationRelativeTo(null);
-        setIconImage(IconUtil.loadIcon("/icons/main.png", 36, 36).getImage());
-
+        ImageIcon icon = IconUtil.loadIcon("/icons/main.png", 36, 36);
+        if (icon != null) {
+            setIconImage(icon.getImage());
+        }
         JTable table = new JTable();
         table.setModel(model);
         table.setAutoCreateRowSorter(true);
@@ -80,15 +76,15 @@ public class ExtractorFrame extends JFrame {
     /**
      * Creates the tool bar.
      *
-     * @return the j tool bar
+     * @return the jtoolbar
      */
     private JToolBar createToolBar() {
         JToolBar bar = new JToolBar();
         bar.setFloatable(false);
         
         extractBtn = makeButton("Extract in", 'E', e -> extractSelected());
-        commentBtn = makeButton("See comment", 'C', e -> showComment());
-        reportBtn = makeButton("Generate report", 'I', e -> generateReport());
+        commentBtn = makeButton("See comment", 'M', e -> showComment());
+        reportBtn = makeButton("Generate report", 'R', e -> generateReport());
         JButton openBtn = makeButton("Open", 'O', e -> open());
         JButton aboutBtn = makeButton("About", 'A', e -> about());
         openBtn.setIcon(IconUtil.loadIcon("/icons/open.png", 32, 32));
@@ -165,6 +161,10 @@ public class ExtractorFrame extends JFrame {
                 PasswordDialog dialog = new PasswordDialog(this, "Password required");
                 dialog.setVisible(true);
                 password = dialog.getPassword();
+                if (!dialog.isAccepted()) {
+                    MessageUtil.showInfo("You need to specify the password to extract", "Password required");
+                    return;
+                }
             }
             info = currentFile.readEntries(inputFile, password);
             model.setEntries(info.getEntries());
